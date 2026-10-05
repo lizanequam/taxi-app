@@ -1,0 +1,59 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-ride-status-enum
+      author: developer
+      changes:
+        - sql:
+            sql: "CREATE TYPE ride_status AS ENUM ('CREATED', 'ACCEPTED', 'EN_ROUTE_TO_PASSENGER', 'EN_ROUTE_TO_DESTINATION', 'COMPLETED', 'CANCELED');"
+
+  - changeSet:
+      id: create-rides-table
+      author: developer
+      changes:
+        - createTable:
+            tableName: rides
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: driver_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: passenger_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: pickup_address
+                  type: VARCHAR(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: destination_address
+                  type: VARCHAR(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: ride_status
+                  defaultValueComputed: "'CREATED'::ride_status"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ordered_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: cost
+                  type: NUMERIC(10, 2)
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP

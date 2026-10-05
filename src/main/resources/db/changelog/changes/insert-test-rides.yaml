@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-test-rides
+      author: developer
+      changes:
+        - insert:
+            tableName: rides
+            columns:
+              - column: { name: driver_id, valueNumeric: 1 }
+              - column: { name: passenger_id, valueNumeric: 1 }
+              - column: { name: pickup_address, value: "г. Минск, ул. Ленина, 1" }
+              - column: { name: destination_address, value: "г. Минск, пр. Независимости, 50" }
+              - column: { name: status, value: CREATED }
+              - column: { name: ordered_at, valueDate: "2026-10-04T10:00:00" }
+              - column: { name: cost, valueNumeric: 15.50 }

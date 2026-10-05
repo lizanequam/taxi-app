@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-test-ratings
+      author: developer
+      changes:
+        - insert:
+            tableName: ratings
+            columns:
+              - column: { name: ride_id, valueNumeric: 1 }
+              - column: { name: rater_id, valueNumeric: 1 }
+              - column: { name: rater_role, value: PASSENGER }
+              - column: { name: rating, valueNumeric: 5 }
+              - column: { name: comment, value: "Отличная поездка, водитель очень вежливый!" }
+        - insert:
+            tableName: ratings
+            columns:
+              - column: { name: ride_id, valueNumeric: 1 }
+              - column: { name: rater_id, valueNumeric: 1 }
+              - column: { name: rater_role, value: DRIVER }
+              - column: { name: rating, value: null } # водила пока не оценил
+              - column: { name: comment, value: null }

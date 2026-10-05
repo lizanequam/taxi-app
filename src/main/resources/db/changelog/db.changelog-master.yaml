@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changes/create-tables-1.yaml
+  - include:
+      file: db/changelog/changes/insert-test-data-2.yaml
+  - include:
+      file: db/changelog/changes/create-drivers-and-cars.yaml
+  - include:
+      file: db/changelog/changes/insert-drivers-cars-data.yaml
+  - include:
+      file: db/changelog/changes/create-rides-table.yaml
+  - include:
+      file: db/changelog/changes/insert-test-rides.yaml
+  - include:
+      file: db/changelog/changes/create-ratings-table.yaml
+  - include:
+      file: db/changelog/changes/insert-test-ratings.yaml

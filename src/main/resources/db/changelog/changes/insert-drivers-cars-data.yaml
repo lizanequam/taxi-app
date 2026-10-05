@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-test-drivers
+      author: developer
+      changes:
+        - insert:
+            tableName: drivers
+            columns:
+              - column: { name: name, value: Алексей Сидоров }
+              - column: { name: email, value: alexey.driver@example.com }
+              - column: { name: phone, value: +375291112233 }
+        - insert:
+            tableName: drivers
+            columns:
+              - column: { name: name, value: Дмитрий Волков }
+              - column: { name: email, value: dmitry.driver@example.com }
+              - column: { name: phone, value: +375294445566 }
+
+  - changeSet:
+      id: insert-test-cars
+      author: developer
+      changes:
+        - insert:
+            tableName: cars
+            columns:
+              - column: { name: driver_id, valueNumeric: 1 }
+              - column: { name: color, value: Черный }
+              - column: { name: brand, value: Volkswagen Passat }
+              - column: { name: plate, value: 1234 AB 5 }
+        - insert:
+            tableName: cars
+            columns:
+              - column: { name: driver_id, valueNumeric: 2 }
+              - column: { name: color, value: Белый }
+              - column: { name: brand, value: Tesla Model 3 }
+              - column: { name: plate, value: E 123 AB 5 }

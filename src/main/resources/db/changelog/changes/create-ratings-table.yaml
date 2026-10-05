@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-rater-role-enum
+      author: developer
+      changes:
+        - sql:
+            sql: "CREATE TYPE rater_role AS ENUM ('PASSENGER', 'DRIVER');"
+
+  - changeSet:
+      id: create-ratings-table
+      author: developer
+      changes:
+        - createTable:
+            tableName: ratings
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: ride_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rater_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rater_role
+                  type: rater_role
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rating
+                  type: INT
+              - column:
+                  name: comment
+                  type: TEXT
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        # ограничение уникальности и проверка диапазона оценки
+        - sql:
+            splitStatements: true
+            stripComments: true
+            sql: |
+              ALTER TABLE ratings ADD CONSTRAINT uq_rating_per_ride UNIQUE (ride_id, rater_id, rater_role);
+              ALTER TABLE ratings ADD CONSTRAINT chk_rating_value CHECK (rating IS NULL OR (rating >= 1 AND rating <= 5));

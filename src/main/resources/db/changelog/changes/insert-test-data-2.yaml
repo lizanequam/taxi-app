@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-test-passengers
+      author: developer
+      changes:
+        - insert:
+            tableName: passengers
+            columns:
+              - column:
+                  name: name
+                  value: Иван Иванов
+              - column:
+                  name: email
+                  value: ivan@example.com
+              - column:
+                  name: phone
+                  value: +375291234567
